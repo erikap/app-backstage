@@ -1,65 +1,71 @@
 defmodule Dispatcher do
-  use Plug.Router
+  use Matcher
 
-  def start(_argv) do
-    port = 80
-    IO.puts "Starting Plug with Cowboy on port #{port}"
-    Plug.Adapters.Cowboy.http __MODULE__, [], port: port
-    :timer.sleep(:infinity)
+  define_accept_types [
+    json: [ "application/json", "application/vnd.api+json" ],
+    html: [ "text/html", "application/xhtml+html" ],
+    any: [ "*/*" ]
+  ]
+
+  @html %{ accept: %{ html: true } }
+  @json %{ accept: %{ json: true } }
+  @any %{ accept: %{ any: true } }
+
+  options "*path", _ do
+    conn
+    |> Plug.Conn.put_resp_header( "access-control-allow-headers", "content-type,accept" )
+    |> Plug.Conn.put_resp_header( "access-control-allow-methods", "*" )
+    |> send_resp( 200, "{ \"message\": \"ok\" }" )
   end
 
-  plug Plug.Logger
-  plug :match
-  plug :dispatch
-
-  # In order to forward the 'themes' resource to the
-  # resource service, use the following forward rule.
-  #
-  # docker-compose stop; docker-compose rm; docker-compose up
-  # after altering this file.
-  #
-  match "/scores/*path" do
-    Proxy.forward conn, path, "http://cache/scores/"
+  match "/scores/*path", @json do
+    forward conn, path, "http://cache/scores"
   end
 
-  match "/score-parts/*path" do
-    Proxy.forward conn, path, "http://cache/score-parts/"
+  match "/score-parts/*path", @json do
+    forward conn, path, "http://cache/score-parts"
   end
 
-  match "/instruments/*path" do
-    Proxy.forward conn, path, "http://cache/instruments/"
+  match "/instruments/*path", @json do
+    forward conn, path, "http://cache/instruments/"
   end
 
-  match "/instrument-parts/*path" do
-    Proxy.forward conn, path, "http://cache/instrument-parts/"
+  match "/instrument-parts/*path", @json do
+    forward conn, path, "http://cache/instrument-parts/"
   end
 
-  get "/keys/*path" do
-    Proxy.forward conn, path, "http://cache/keys/"
+  get "/keys/*path", @json do
+    forward conn, path, "http://cache/keys/"
   end
 
-  get "/clefs/*path" do
-    Proxy.forward conn, path, "http://cache/clefs/"
+  get "/clefs/*path", @json do
+    forward conn, path, "http://cache/clefs/"
   end
 
-  match "/genres/*path" do
-    Proxy.forward conn, path, "http://cache/genres/"
+  match "/genres/*path", @json do
+    forward conn, path, "http://cache/genres/"
   end
 
-  get "/score-statuses/*path" do
-    Proxy.forward conn, path, "http://cache/score-statuses/"
+  get "/score-statuses/*path", @json do
+    forward conn, path, "http://cache/score-statuses/"
   end
 
-  match "/score-part-templates/*path" do
-    Proxy.forward conn, path, "http://cache/score-part-templates/"
+  match "/score-part-templates/*path", @json do
+    forward conn, path, "http://cache/score-part-templates/"
   end
 
-  match "/files/*path" do
-    Proxy.forward conn, path, "http://cache/files/"
+  match "/files/*path", @json do
+    forward conn, path, "http://cache/files/"
   end
 
-  match _ do
+  match "_", %{ last_call: true, accept: %{ json: true } } do
+    send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
+  end
+
+  match "_", %{ last_call: true, accept: %{ any: true } } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 
+  last_match
 end
+
