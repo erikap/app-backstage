@@ -42,6 +42,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/clefs/"
   end
 
+  match "/genres/*path" do
+    Proxy.forward conn, path, "http://cache/genres/"
+  end
+
   get "/score-statuses/*path" do
     Proxy.forward conn, path, "http://cache/score-statuses/"
   end

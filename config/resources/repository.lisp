@@ -21,6 +21,7 @@
 (add-prefix "nie" "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#")
 (add-prefix "dbpedia" "http://dbpedia.org/ontology/")
 (add-prefix "schema" "http://schema.org/")
+(add-prefix "mo" "http://purl.org/ontology/mo/")
 
 (add-prefix "music" "http://backstage.data.gift/vocabularies/music/")
 (add-prefix "app" "http://backstage.data.gift/vocabularies/application/")

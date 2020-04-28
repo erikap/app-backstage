@@ -36,7 +36,7 @@ defmodule Acl.UserGroups.Config do
                         "http://backstage.data.gift/vocabularies/application/ScorePartTemplate",
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject"
                       ]
-                    } } ] }
+                    } } ] },
 
       # // CLEANUP
       #

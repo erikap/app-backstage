@@ -21,14 +21,15 @@
                 (:composer :string ,(s-prefix "schema:composer"))
                 (:arranger :string ,(s-prefix "music:arranger"))
                 (:duration :string ,(s-prefix "schema:timeRequired"))
-                (:genre :string ,(s-prefix "schema:genre"))
                 (:publisher :string ,(s-prefix "schema:publisher"))
 		(:created :datetime ,(s-prefix "dct:created"))
 		(:modified :datetime ,(s-prefix "dct:modified")))
   :has-one `((score-status :via ,(s-prefix "adms:status")
                            :as "status"))
   :has-many `((score-part :via ,(s-prefix "schema:hasPart")
-                          :as "parts"))
+                          :as "parts")
+              (genre :via ,(s-prefix "schema:genre")
+                     :as "genres"))
   :resource-base (s-url "http://backstage.data.gift/scores/")
   :on-path "scores")
 
@@ -40,16 +41,12 @@
                     :inverse t
                     :as "score")
              (instrument :via ,(s-prefix "music:instrument")
-                         :inverse t
                          :as "instrument")
              (instrument-part :via ,(s-prefix "music:instrumentPart")
-                              :inverse t
                               :as "instrument-part")
              (key :via ,(s-prefix "music:key")
-                  :inverse t
                   :as "key")
              (clef :via ,(s-prefix "music:clef")
-                   :inverse t
                    :as "clef")
              (file :via ,(s-prefix "nie:isStoredAs")
                    :as "file"))
@@ -61,7 +58,10 @@
   :properties `((:label :string ,(s-prefix "skos:prefLabel"))
                 (:position :number ,(s-prefix "schema:position")))
   :has-many `((instrument-part :via ,(s-prefix "music:hasInstrumentPart")
-                               :as "instrument-parts"))
+                               :as "parts")
+              (score-part-template :via ,(s-prefix "music:instrument")
+                                   :inverse t
+                                   :as "templates"))
   :resource-base (s-url "http://backstage.data.gift/instruments/")
   :features '(include-uri)
   :on-path "instruments")
@@ -90,14 +90,19 @@
   :features '(include-uri)
   :on-path "clefs")
 
+(define-resource genre ()
+  :class (s-prefix "mo:Genre")
+  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :resource-base (s-url "http://backstage.data.gift/genres/")
+  :features '(include-uri)
+  :on-path "genres")
+
 (define-resource score-part-template ()
   :class (s-prefix "app:ScorePartTemplate")
   :properties `((:position :number ,(s-prefix "schema:position")))
   :has-one `((instrument :via ,(s-prefix "music:instrument")
-                         :inverse t
                          :as "instrument")
              (instrument-part :via ,(s-prefix "music:instrumentPart")
-                              :inverse t
                               :as "instrument-part")
              (key :via ,(s-prefix "music:key")
                   :inverse t
@@ -106,7 +111,6 @@
                    :inverse t
                    :as "clef"))
   :resource-base (s-url "http://backstage.data.gift/score-part-templates/")
-  :features '(include-uri)
   :on-path "score-part-templates")
 
 (define-resource score-status ()
