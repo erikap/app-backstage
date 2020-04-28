@@ -1,0 +1,89 @@
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix music: <http://backstage.data.gift/vocabularies/music/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://backstage.data.gift/concept-schemes/keys> a skos:ConceptScheme ;
+    mu:uuid "a0ea0bad-cfb1-48c6-8208-7bd1f567ad3a" ;
+    skos:prefLabel "Toonaarden"@nl, "Music keys"@en .
+
+<http://backstage.data.gift/keys/C> a skos:Concept, music:Key ;
+    mu:uuid "b06774cf-cdd9-4bd8-bd36-981caaa94640" ;
+    skos:prefLabel "Do"@nl ;
+    skos:notation "C" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "10"^^xsd:integer .
+
+<http://backstage.data.gift/keys/Bes> a skos:Concept, music:Key ;
+    mu:uuid "5c7aae74-0bcd-49b8-93b2-0a6b194bdd85" ;
+    skos:prefLabel "Sib"@nl ;
+    skos:notation "Bb" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "20"^^xsd:integer .
+
+<http://backstage.data.gift/keys/Es> a skos:Concept, music:Key ;
+    mu:uuid "b822e0cb-2287-4bff-9647-ab4e3568b041" ;
+    skos:prefLabel "Mib"@nl ;
+    skos:notation "Eb" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "30"^^xsd:integer .
+
+<http://backstage.data.gift/keys/F> a skos:Concept, music:Key ;
+    mu:uuid "68a22ff2-a766-486d-be63-9e6ecf249f9d" ;
+    skos:prefLabel "Fa"@nl ;
+    skos:notation "F" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "40"^^xsd:integer .
+
+<http://backstage.data.gift/keys/A> a skos:Concept, music:Key ;
+    mu:uuid "13bf881f-1376-4e46-90e1-db19db9d279d" ;
+    skos:prefLabel "La"@nl ;
+    skos:notation "A" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "50"^^xsd:integer .
+
+<http://backstage.data.gift/keys/D> a skos:Concept, music:Key ;
+    mu:uuid "6aa6434e-a0bf-44f8-8c90-ee1c9fa8fe15" ;
+    skos:prefLabel "Re"@nl ;
+    skos:notation "D" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "60"^^xsd:integer .
+
+<http://backstage.data.gift/keys/E> a skos:Concept, music:Key ;
+    mu:uuid "45962dd4-3a90-43b2-af47-cb98e9048148" ;
+    skos:prefLabel "Mi"@nl ;
+    skos:notation "E" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "70"^^xsd:integer .
+
+<http://backstage.data.gift/keys/Fis> a skos:Concept, music:Key ;
+    mu:uuid "52d1ad6e-2592-4fef-8f24-b6c8c2bdc91a" ;
+    skos:prefLabel "Fa#"@nl ;
+    skos:notation "F#" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "80"^^xsd:integer .
+
+<http://backstage.data.gift/keys/G> a skos:Concept, music:Key ;
+    mu:uuid "20f34878-97ae-45b4-a51d-29ab4897f7e6" ;
+    skos:prefLabel "Sol"@nl ;
+    skos:notation "G" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "90"^^xsd:integer .
+
+<http://backstage.data.gift/keys/As> a skos:Concept, music:Key ;
+    mu:uuid "1f5566bd-1dc9-4bf0-aa8a-485496612572" ;
+    skos:prefLabel "Lab"@nl ;
+    skos:notation "Ab" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/keys> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/keys> ;
+    schema:position "100"^^xsd:integer .

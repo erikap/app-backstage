@@ -1,0 +1,34 @@
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix music: <http://backstage.data.gift/vocabularies/music/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://backstage.data.gift/concept-schemes/clefs> a skos:ConceptScheme ;
+    mu:uuid "db005bfb-d364-419e-883e-d308d36d2c43" ;
+    skos:prefLabel "Muzieksleutels"@nl, "Clefs"@en .
+
+
+<http://backstage.data.gift/clefs/G-clef> a skos:Concept, music:Clef ;
+    mu:uuid "3c40695d-ed94-409a-938e-9968f72d3a9b" ;
+    skos:prefLabel "Sol-sleutel"@nl ;
+    skos:notation "G" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/clefs> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/clefs> ;
+    schema:position "10"^^xsd:integer .
+
+<http://backstage.data.gift/clefs/F-clef> a skos:Concept, music:Clef ;
+    mu:uuid "cd966942-0d9b-4d88-978f-1b20075186fd" ;
+    skos:prefLabel "Fa-sleutel"@nl ;
+    skos:notation "F" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/clefs> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/clefs> ;
+    schema:position "20"^^xsd:integer .
+
+<http://backstage.data.gift/clefs/C-clef> a skos:Concept, music:Clef ;
+    mu:uuid "85ddc7bf-6bae-46a0-8d20-850a774f3577" ;
+    skos:prefLabel "Ut-sleutel"@nl ;
+    skos:notation "C" ;
+    skos:topConceptOf <http://backstage.data.gift/concept-schemes/clefs> ;
+    skos:inScheme <http://backstage.data.gift/concept-schemes/clefs> ;
+    schema:position "30"^^xsd:integer .
