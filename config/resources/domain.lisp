@@ -78,14 +78,16 @@
 
 (define-resource key ()
   :class (s-prefix "music:Key")  ;; < skos:Concept
-  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :properties `((:label :string ,(s-prefix "skos:prefLabel"))
+                (:notation :string ,(s-prefix "skos:notation")))
   :resource-base (s-url "http://backstage.data.gift/keys/")
   :features '(include-uri)
   :on-path "keys")
 
 (define-resource clef ()
   :class (s-prefix "music:Clef")  ;; < skos:Concept
-  :properties `((:label :string ,(s-prefix "skos:prefLabel")))
+  :properties `((:label :string ,(s-prefix "skos:prefLabel"))
+                (:notation :string ,(s-prefix "skos:notation")))
   :resource-base (s-url "http://backstage.data.gift/clefs/")
   :features '(include-uri)
   :on-path "clefs")
